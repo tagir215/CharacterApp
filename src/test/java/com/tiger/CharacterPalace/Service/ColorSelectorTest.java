@@ -1,18 +1,20 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.tiger.CharacterPalace.model.LmTrie;
+import com.tiger.CharacterPalace.service.character.LanguageModelColorSelector;
 import com.tiger.CharacterPalace.util.FileManager;
 
 class ColorSelectorTest {
-    private ColorSelector colorSelector;
+    private LanguageModelColorSelector colorSelector;
 
     @BeforeEach
     void setUp() {
         LmTrie trie = FileManager.fileToTrie("glove.6B.100d.txt");
 
-        colorSelector = new ColorSelector(trie);
+        colorSelector = new LanguageModelColorSelector(trie);
     }
 
     @Test

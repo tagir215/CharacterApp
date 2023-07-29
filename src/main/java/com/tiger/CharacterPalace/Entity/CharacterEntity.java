@@ -1,4 +1,4 @@
-package com.tiger.CharacterPalace.Entity;
+package com.tiger.CharacterPalace.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +22,7 @@ public class CharacterEntity {
 	
 	@Column(nullable=false, columnDefinition= "TEXT")
 	private String identityData;
+	
 	
 	@Column(nullable=true)
 	private int frequency_rank;
@@ -125,7 +126,7 @@ public class CharacterEntity {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
+
 	
 	
 }

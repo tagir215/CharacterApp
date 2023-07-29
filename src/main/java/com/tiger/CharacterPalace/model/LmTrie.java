@@ -1,4 +1,4 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.model;
 
 import java.util.HashMap;
 
@@ -33,7 +33,7 @@ public class LmTrie {
 		node.embeddings = embeddings;
 	}
 	
-	double[] search(String word) {
+	public double[] search(String word) {
 		Node node = root;
 		for(int i=0; i<word.length(); i++) {
 			char c = word.charAt(i);

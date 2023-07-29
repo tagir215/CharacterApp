@@ -9,11 +9,14 @@ import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import com.tiger.CharacterPalace.model.PathPoint;
 
 public class ImageUtils {
     public static BufferedImage fontToImages(int codePoint,Font font,float size) {
@@ -62,9 +65,19 @@ public class ImageUtils {
         frame.setVisible(true);
     }
 
+    public static BufferedImage pathsToImage(List<List<PathPoint>>paths, int size) {
+    	List<List<double[]>>doublePaths = new ArrayList<>();
+    	for(List<PathPoint>path : paths) {
+    		List<double[]>points = new ArrayList<>();
+    		for(PathPoint point : path) {
+    			points.add(point.getPoint());
+    		}
+    		doublePaths.add(points);
+    	}
+    	return pointsToImage(doublePaths,size);
+    }
 
-
-    public static BufferedImage pathsToImage(List<List<double[]>>paths,int size) {
+    public static BufferedImage pointsToImage(List<List<double[]>>paths,int size) {
     	BufferedImage img = new BufferedImage(size,size,BufferedImage.TYPE_INT_ARGB);
         
     	int[] colorCodes = {

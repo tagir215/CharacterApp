@@ -1,4 +1,4 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.model;
 
 import java.util.ArrayList;
 import java.util.List;

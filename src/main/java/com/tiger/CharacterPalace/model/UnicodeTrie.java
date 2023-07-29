@@ -1,4 +1,4 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.model;
 
 public class UnicodeTrie {
 	Node root = new Node('-');
@@ -12,7 +12,7 @@ public class UnicodeTrie {
 		}
 	}
 	
-	void insert(Hanzi hanzi) {
+	public void insert(Hanzi hanzi) {
 		int unicode = hanzi.getCharcter().codePointAt(0);
 		String unicodeString = String.valueOf(unicode);
 		Node node = root;
@@ -29,7 +29,7 @@ public class UnicodeTrie {
 		node.hanzi = hanzi;
 	}
 	
-	Hanzi search(int unicode) {
+	public Hanzi search(int unicode) {
 		Node node = root;
 		String unicodeString = String.valueOf(unicode);
 		for(int i=0; i<unicodeString.length(); i++) {

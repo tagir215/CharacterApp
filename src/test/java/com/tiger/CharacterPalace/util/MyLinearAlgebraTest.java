@@ -8,8 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.tiger.CharacterPalace.util.MyLinearAlgebra;
-
 class MyLinearAlgebraTest {
     @Test
     void testCosineSimilarity() {

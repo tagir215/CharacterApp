@@ -8,8 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.tiger.CharacterPalace.Service.Path;
-import com.tiger.CharacterPalace.util.JsonMapper;
+import com.tiger.CharacterPalace.model.Path;
 
 public class JsonMapperTest {
 

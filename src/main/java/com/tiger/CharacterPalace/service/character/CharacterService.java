@@ -1,9 +1,9 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.service.character;
 
 import java.awt.Font;
 import java.util.List;
 
-import com.tiger.CharacterPalace.Entity.CharacterEntity;
+import com.tiger.CharacterPalace.entity.CharacterEntity;
 
 public interface CharacterService {
 	public void saveCharacters(Font font);

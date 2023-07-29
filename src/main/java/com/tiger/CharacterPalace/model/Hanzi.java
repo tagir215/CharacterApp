@@ -1,4 +1,4 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.model;
 
 public class Hanzi {
     private int frequency_rank;
@@ -6,6 +6,7 @@ public class Hanzi {
     private String pinyin;
     private String definition;
     private String radical;
+    private String color;
     private double radical_code;
     private String stroke_count;
     private int hsk_levl;
@@ -84,7 +85,16 @@ public class Hanzi {
     public void setGeneral_standard_num(int general_standard_num) {
         this.general_standard_num = general_standard_num;
     }
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
  
+    
 }
 
 	 

@@ -6,10 +6,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 
-import com.tiger.CharacterPalace.Service.LmTrie;
+import com.tiger.CharacterPalace.model.LmTrie;
 
 public class FileManager {
 	public static String getResourcePath(String path) {
@@ -61,4 +62,25 @@ public class FileManager {
 		}
 		return font;
 	}
+	
+	
+	 public static void writeToFile(String chineseCharacters)  {
+	        File tempFile = null;
+			try {
+				tempFile = File.createTempFile("chinese_characters", ".txt");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        tempFile.deleteOnExit(); // Delete the temporary file when the JVM exits
+
+	        try (FileWriter writer = new FileWriter(tempFile)) {
+	            writer.write(chineseCharacters);
+	        } catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+	        System.out.println("Chinese characters have been written to the temporary file: " + tempFile.getAbsolutePath());
+	    }
 }

@@ -1,12 +1,13 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.service.character;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import com.tiger.CharacterPalace.model.LmTrie;
 import com.tiger.CharacterPalace.util.MyLinearAlgebra;
 
-public class ColorSelector {
+public class LanguageModelColorSelector {
 	private final LmTrie trie;
 	private LinkedHashMap<String,double[]>moodColorMap = new LinkedHashMap<>();
 	private final String[] words = {
@@ -122,20 +123,6 @@ public class ColorSelector {
 		    "sturdy",
 		    "earthy",
 		    
-		    // Moods for gray
-		    "sophisticated",
-		    "modern",
-		    "elegant",
-		    "neutral",
-		    "calm",
-		    "stable",
-		    "balanced",
-		    "timeless",
-		    "subtle",
-		    "practical",
-		    "serene",
-		    "versatile",
-		    
 		    // Moods for black
 		    "mysterious",
 		    "powerful",
@@ -175,13 +162,12 @@ public class ColorSelector {
 		    "purple",
 		    "pink",
 		    "brown",
-		    "gray",
 		    "black",
 		    "white"
 	};
 
 
-	public ColorSelector(LmTrie trie) {
+	public LanguageModelColorSelector(LmTrie trie) {
 		this.trie = trie;
 		final int size = 12;
 		int j=0;

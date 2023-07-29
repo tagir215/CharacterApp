@@ -1,10 +1,11 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import com.tiger.CharacterPalace.model.Hanzi;
+import com.tiger.CharacterPalace.model.UnicodeTrie;
 
 public class UnicodeTrieTest {
 

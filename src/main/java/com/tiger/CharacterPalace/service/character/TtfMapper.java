@@ -1,29 +1,29 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.service.character;
 
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.geom.PathIterator;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import com.tiger.CharacterPalace.Entity.CharacterEntity;
+import com.tiger.CharacterPalace.entity.CharacterEntity;
+import com.tiger.CharacterPalace.model.Hanzi;
+import com.tiger.CharacterPalace.model.KdTree;
+import com.tiger.CharacterPalace.model.MyShape;
+import com.tiger.CharacterPalace.model.Path;
+import com.tiger.CharacterPalace.model.PathPoint;
+import com.tiger.CharacterPalace.model.UnicodeTrie;
+import com.tiger.CharacterPalace.util.Constants;
 import com.tiger.CharacterPalace.util.FileManager;
 import com.tiger.CharacterPalace.util.ImageUtils;
 import com.tiger.CharacterPalace.util.JsonMapper;
-import com.tiger.CharacterPalace.util.PathCreator;
 import com.tiger.CharacterPalace.util.ZhangSuen;
 
 public class TtfMapper {
 	private static int count = 0;
-	private static final int FILTER_RATIO = 20;
-	private static final int IMAGE_SIZE = 200;
 	
 	public static List<CharacterEntity>createCharacterEntities(Font font){
 		System.out.println("creating list");
@@ -110,8 +110,9 @@ public class TtfMapper {
     public static List<CharacterEntity> curvesToEntities(List<MyShape>shapes,UnicodeTrie trie,Font font) {
 		List<CharacterEntity>entities = new ArrayList<>();
 		System.out.println("creating lmtrie");
-		ColorSelector cSelector = new ColorSelector(FileManager.fileToTrie("glove.6B.100d.txt"));
+		LanguageModelColorSelector cSelector = new LanguageModelColorSelector(FileManager.fileToTrie("glove.6B.100d.txt"));
 		System.out.println("done\nshapes to entities "+shapes.size());
+		IdentityCreator iCreator = new IdentityCreatorI();
 		for(MyShape shape : shapes) {
 			CharacterEntity entity = new CharacterEntity();
 			entity.setUnicode(shape.getUnicode());
@@ -130,8 +131,7 @@ public class TtfMapper {
 				}else {
 					entity.setColor("gray");
 				}
-				KdTree kdtree = createKdTree(entity,font);
-				entity.setIdentityData(JsonMapper.objectToJson(kdtree.getRoot()));
+				fillEntity(entity,font,iCreator);
 			}
 			else {
 				continue;
@@ -147,19 +147,18 @@ public class TtfMapper {
     	
     }
     
-    public static KdTree createKdTree(CharacterEntity entity,Font font) {
-    	BufferedImage imageVersion = ImageUtils.fontToImages(entity.getUnicode(), font, IMAGE_SIZE);
-		ZhangSuen.skeletonize(imageVersion);
-		List<List<double[]>>paths = PathCreator.imageToPaths(imageVersion);
-		PathCreator.filterPathsByRatio(paths,FILTER_RATIO);
-		List<double[]>points = new ArrayList<>();
-		for(List<double[]>path : paths) {
-			for(double[] point : path) {
-				points.add(point);
-			}
-		}
- 		return new KdTree(points);
+    
+    private static void fillEntity(CharacterEntity entity,Font font, IdentityCreator iCreator){
+    	BufferedImage image = ImageUtils.fontToImages(entity.getUnicode(), font, Constants.IMAGE_SIZE);
+    	ZhangSuen.skeletonize(image);
+    	List<List<PathPoint>>paths = PathCreator.imageToPaths(image);
+    	List<List<double[]>>identityPoints = iCreator.pathsIdentityPoints(paths);
+    	List<double[]>onePath = new ArrayList<>();
+    	for(List<double[]>path : identityPoints) {
+    		onePath.addAll(path);
+    	}
+    	KdTree kdTree = new KdTree(onePath);
+    	entity.setIdentityData(JsonMapper.objectToJson(kdTree.getRoot()));
     }
-    	
     
 }

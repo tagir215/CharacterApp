@@ -1,4 +1,4 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
+import com.tiger.CharacterPalace.model.KdTree;
 import com.tiger.CharacterPalace.util.JsonMapper;
 
 public class KdTreeTest {

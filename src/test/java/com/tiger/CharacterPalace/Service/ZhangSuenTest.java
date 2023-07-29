@@ -1,4 +1,4 @@
-package com.tiger.CharacterPalace.util;
+package com.tiger.CharacterPalace.service;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -8,6 +8,10 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.tiger.CharacterPalace.util.FileManager;
+import com.tiger.CharacterPalace.util.ImageUtils;
+import com.tiger.CharacterPalace.util.ZhangSuen;
 
 class ZhangSuenTest {
 	BufferedImage image;

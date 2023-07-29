@@ -1,4 +1,4 @@
-package com.tiger.CharacterPalace.Service;
+package com.tiger.CharacterPalace.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,7 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.tiger.CharacterPalace.Entity.CharacterEntity;
+import com.tiger.CharacterPalace.entity.CharacterEntity;
+import com.tiger.CharacterPalace.service.character.TtfMapper;
 import com.tiger.CharacterPalace.util.FileManager;
 
 class TtfMapperTest {
